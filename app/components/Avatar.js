@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
@@ -20,9 +20,26 @@ export default function Avatar(props) {
     actions['waiting'].reset().play()
   }, [])
 
+  // State to track screen size
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust for tablets & mobiles
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   return (
     <group {...props} dispose={null} ref={group} >
-      <group rotation-x={-Math.PI / 1.5} position={[1.5, 0, 0]}>
+      <group
+        rotation-x={-Math.PI / 1.5}
+        position={isMobile ? [0, 0, -1.5] : [1.5, 0, 0]} // Move center in mobile
+        scale={isMobile ? 0.9 : 1} // Slightly scale down in mobile
+      >
         <primitive object={nodes.Hips} />
         <skinnedMesh geometry={nodes.Wolf3D_Hair.geometry} material={materials.Wolf3D_Hair} skeleton={nodes.Wolf3D_Hair.skeleton} />
         <skinnedMesh geometry={nodes.Wolf3D_Body.geometry} material={materials.Wolf3D_Body} skeleton={nodes.Wolf3D_Body.skeleton} />
