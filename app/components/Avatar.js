@@ -37,7 +37,7 @@ export default function Avatar(props) {
     <group {...props} dispose={null} ref={group} >
       <group
         rotation-x={-Math.PI / 1.5}
-        position={isMobile ? [0, 0, -1.5] : [1.5, 0, 0]} // Move center in mobile
+        position={isMobile ? [0, -1, -1.5] : [1.5, 0, 0]} // Move center in mobile
         scale={isMobile ? 0.9 : 1} // Slightly scale down in mobile
       >
         <primitive object={nodes.Hips} />

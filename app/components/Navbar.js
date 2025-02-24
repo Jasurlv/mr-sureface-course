@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Play, Pause, Menu, X } from "lucide-react"; // Install: npm install lucide-react
+import { Play, Pause, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -48,7 +48,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-black text-white shadow-lg">
+      <nav className="bg-black/10 text-white shadow-lg fixed w-full z-50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -74,24 +74,36 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden text-white text-xl p-2"
+                className="md:hidden text-white text-xl p-2 transition-transform transform"
               >
-                {isOpen ? <X /> : <Menu />}
+                {isOpen ? <X className="rotate-180 transition-transform duration-300" /> : <Menu />}
               </button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden ${isOpen ? "block" : "hidden"} bg-gray-800 p-4`}>
-          <ul className="space-y-3 text-center">
-            <li><Link href="/" className="block py-2">Home</Link></li>
-            <li><Link href="/about" className="block py-2">About</Link></li>
-            <li><Link href="/services" className="block py-2">Services</Link></li>
-            <li><Link href="/contact" className="block py-2">Contact</Link></li>
-          </ul>
-        </div>
       </nav>
+
+      {/* Full-Screen Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/90 backdrop-blur-md z-[999] flex flex-col items-center justify-center space-y-6 transition-all duration-500 ${
+          isOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-90"
+        }`}
+      >
+        <ul className="text-2xl font-semibold text-white space-y-5">
+          <li className="hover:text-gray-300 transition"><Link href="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+          <li className="hover:text-gray-300 transition"><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+          <li className="hover:text-gray-300 transition"><Link href="/services" onClick={() => setIsOpen(false)}>Services</Link></li>
+          <li className="hover:text-gray-300 transition"><Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+        </ul>
+
+        {/* Close Button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-6 right-6 text-white text-3xl"
+        >
+          <X />
+        </button>
+      </div>
 
       {/* Hidden Audio Element */}
       <audio ref={audioRef} src="/music/love.mp3" loop />
