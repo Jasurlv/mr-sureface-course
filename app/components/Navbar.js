@@ -2,10 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Play, Pause } from "lucide-react"; // Install with: npm install lucide-react
+import { Play, Pause, Menu, X } from "lucide-react"; // Install: npm install lucide-react
 
 export default function Navbar() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu state
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +23,6 @@ export default function Navbar() {
 
     playMusic();
 
-    // Listen for first user interaction to retry playing music
     const enableAudio = () => {
       if (audioRef.current && !isPlaying) {
         audioRef.current.play().catch(err => console.warn("Playback failed:", err));
@@ -64,11 +64,32 @@ export default function Navbar() {
               <Link href="/contact" className="hover:text-gray-400">Contact</Link>
             </div>
 
-            {/* Music Control Button */}
-            <button onClick={toggleMusic} className="text-white text-xl p-2">
-              {isPlaying ? <Pause /> : <Play />}
-            </button>
+            {/* Music Control Button & Mobile Menu Icon */}
+            <div className="flex items-center space-x-4">
+              {/* Music Button */}
+              <button onClick={toggleMusic} className="text-white text-xl p-2">
+                {isPlaying ? <Pause /> : <Play />}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden text-white text-xl p-2"
+              >
+                {isOpen ? <X /> : <Menu />}
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`md:hidden ${isOpen ? "block" : "hidden"} bg-gray-800 p-4`}>
+          <ul className="space-y-3 text-center">
+            <li><Link href="/" className="block py-2">Home</Link></li>
+            <li><Link href="/about" className="block py-2">About</Link></li>
+            <li><Link href="/services" className="block py-2">Services</Link></li>
+            <li><Link href="/contact" className="block py-2">Contact</Link></li>
+          </ul>
         </div>
       </nav>
 

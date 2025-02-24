@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-black via-gray-900 to-purple-600 text-white">
       {/* Responsive Text Block */}
-      <div className="absolute transform translate-y-[-50%] top-1/2 left-5 sm:left-10 text-center sm:text-left animate-fade-in">
+      <div className="absolute transform translate-y-[-50%] top-1/2 left-5 sm:left-10 text-center md:text-left animate-fade-in">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-5">
           Welcome to My Master React Course
         </h1>
