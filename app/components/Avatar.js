@@ -20,12 +20,12 @@ export default function Avatar(props) {
     actions['waiting'].reset().play()
   }, [])
 
-  // State to track screen size
+  
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust for tablets & mobiles
+      setIsMobile(window.innerWidth < 768); 
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -37,8 +37,8 @@ export default function Avatar(props) {
     <group {...props} dispose={null} ref={group} >
       <group
         rotation-x={-Math.PI / 1.5}
-        position={isMobile ? [0, -1, -1.5] : [1.5, 0, 0]} // Move center in mobile
-        scale={isMobile ? 0.9 : 1} // Slightly scale down in mobile
+        position={isMobile ? [0, -1, -1.5] : [1.5, 0, 0]} 
+        scale={isMobile ? 0.9 : 1} 
       >
         <primitive object={nodes.Hips} />
         <skinnedMesh geometry={nodes.Wolf3D_Hair.geometry} material={materials.Wolf3D_Hair} skeleton={nodes.Wolf3D_Hair.skeleton} />
