@@ -4,7 +4,6 @@ import React from "react";
 import Avatar from "./components/Avatar";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { About } from "./components/About";
 
 export default function Home() {
   return (
@@ -29,9 +28,6 @@ export default function Home() {
           <ambientLight intensity={1} />
         </Canvas>
       </div>
-
-      {/* About section */}
-      <About />
     </main>
   );
 }

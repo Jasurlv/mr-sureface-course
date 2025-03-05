@@ -1,34 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Custom global styles */
 body {
-  @apply bg-gray-900 text-white m-0;
+  @apply bg-gray-900 text-white m-0 overflow-hidden;
+  transition-property: opacity,
+    background,
+    transform,
+    filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
 }
 
 #about {
-  position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: radial-gradient(#5a47ce, #232323 80%);
-  overflow: hidden;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px; /* Width of scrollbar */
+  width: 10px;
+  /* Width of scrollbar */
 }
 
 /* Scrollbar Track */
 ::-webkit-scrollbar-track {
-  background: linear-gradient(to bottom, #000000, #4b0082); /* Dark gradient */
+  background: linear-gradient(to bottom, #000000, #4b0082);
+  /* Dark gradient */
   border-radius: 10px;
 }
 
 /* Rainbow Scrollbar Thumb */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow colors */
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+  /* Rainbow colors */
   border-radius: 10px;
   transition: all 1s ease;
 }
@@ -36,4 +44,11 @@ body {
 /* Hover Effect */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+}
+
+.page-transition {
+  opacity: 0;
+  background: black;
+  transform: translateY(40px);
+  filter: blur(12px);
 }

@@ -1,14 +1,17 @@
+"use client"
+
 import React from 'react'
 import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Experience } from "./Experience";
-import { UI } from "./UI";
+import { Experience } from "../components/Experience";
+import { UI } from "../components/UI";
 
-export const About = () => {
+
+function about() {
     return (
         <div id="about">
-            <UI /> {/*
+            <UI />
             <Loader />
             <Canvas shadows camera={{
                 position: [-0.5, 1, window.innerWidth > 800 ? 4 : 9],
@@ -19,7 +22,10 @@ export const About = () => {
                         <Experience />
                     </Suspense>
                 </group>
-            </Canvas> */}
+            </Canvas>
         </div>
     )
 }
+
+export default about
+

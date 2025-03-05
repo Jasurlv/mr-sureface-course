@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Play, Pause, Menu, X } from "lucide-react";
+import TransitionLink from "./utils/TransitionLink";
 
 export default function Navbar() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -58,10 +59,10 @@ export default function Navbar() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-6">
-              <Link href="/" className="hover:text-gray-400">Home</Link>
-              <Link href="/about" className="hover:text-gray-400">About</Link>
-              <Link href="/services" className="hover:text-gray-400">Services</Link>
-              <Link href="/contact" className="hover:text-gray-400">Contact</Link>
+              <TransitionLink href="/" className="hover:text-gray-400">Home</TransitionLink>
+              <TransitionLink href="/about" className="hover:text-gray-400">About</TransitionLink>
+              <TransitionLink href="/services" className="hover:text-gray-400">Services</TransitionLink>
+              <TransitionLink href="/contact" className="hover:text-gray-400">Contact</TransitionLink>
             </div>
 
             {/* Music Control Button & Mobile Menu Icon */}
