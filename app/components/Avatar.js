@@ -7,7 +7,7 @@ import { SkeletonUtils } from 'three-stdlib'
 
 export default function Avatar(props) {
   const group = useRef()
-  const { scene } = useGLTF('/modules/sureface.glb')
+  const { scene } = useGLTF('/modules/sureface-optimized.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { animations: waitingAnimation } = useFBX("animation/waiting.fbx")
@@ -55,4 +55,4 @@ export default function Avatar(props) {
   )
 }
 
-useGLTF.preload('/modules/sureface.glb')
+useGLTF.preload('/modules/sureface-optimized.glb');
